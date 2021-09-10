@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Tiles/world_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://player/Jerry.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://HUD/coin_gold.png" type="Texture" id=7]
 [ext_resource path="res://fonts/BalsamiqSans-Bold.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://HUD/HUD.gd" type="Script" id=9]
+[ext_resource path="res://enemies/enemy.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 160, 32 )
@@ -44,6 +45,8 @@ format = 1
 tile_data = PoolIntArray( -65537, 1, 0, -131072, 2, 0, -131071, 2, 0, -131070, 2, 0, -131069, 2, 0, -131068, 2, 0, -131067, 2, 0, -131066, 2, 0, -131065, 2, 0, -131064, 2, 0, -131063, 2, 0, -131062, 0, 0, -1, 3, 0, -65536, 3, 0, -65535, 3, 0, -65534, 3, 0, -65533, 3, 0, -65532, 3, 0, -65531, 3, 0, -65530, 3, 0, -65529, 3, 0, -65528, 3, 0, -65527, 3, 0, -65526, 3, 0, 65535, 3, 0, 0, 3, 0, 1, 3, 0, 2, 3, 0, 3, 3, 0, 4, 3, 0, 5, 3, 0, 6, 3, 0, 7, 3, 0, 8, 3, 0, 9, 3, 0, 10, 3, 0, 131071, 3, 0, 65536, 3, 0, 65537, 3, 0, 65538, 3, 0, 65539, 3, 0, 65540, 3, 0, 65541, 3, 0, 65542, 3, 0, 65543, 3, 0, 65544, 3, 0, 65545, 3, 0, 65546, 3, 0, 196607, 2, 0, 131072, 2, 0, 131073, 2, 0, 131074, 2, 0, 131075, 2, 0, 131076, 3, 0, 131077, 3, 0, 131078, 3, 0, 131079, 3, 0, 131080, 3, 0, 131081, 3, 0, 131082, 3, 0, 262143, 3, 0, 196608, 3, 0, 196609, 3, 0, 196610, 3, 0, 196611, 3, 0, 196612, 3, 0, 196613, 3, 0, 196614, 3, 0, 196615, 3, 0, 196616, 3, 0, 196617, 3, 0, 196618, 3, 0, 327679, 3, 0, 262144, 3, 0, 262145, 3, 0, 262146, 3, 0, 262147, 3, 0, 262148, 3, 0, 262149, 3, 0, 262150, 3, 0, 262151, 3, 0, 262152, 3, 0, 262153, 3, 0, 262154, 3, 0, 393215, 3, 0, 327680, 3, 0, 327681, 3, 0, 327682, 3, 0, 327683, 3, 0, 327684, 3, 0, 327685, 3, 0, 327686, 3, 0, 327687, 3, 0, 327688, 3, 0, 327689, 3, 0, 327690, 3, 0, 393220, 3, 0, 393221, 3, 0 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Tiles One Way"]
+collision_layer = 2
+collision_mask = 49
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tiles One Way/StaticBody2D"]
 position = Vector2( 96, 160 )
@@ -205,6 +208,29 @@ text = "##"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="enemies" type="Node2D" parent="."]
+
+[node name="enemy1" parent="enemies" instance=ExtResource( 10 )]
+position = Vector2( -336, 256 )
+
+[node name="enemy2" parent="enemies" instance=ExtResource( 10 )]
+position = Vector2( 167, 22 )
+direction = 1
+
+[node name="enemy3" parent="enemies" instance=ExtResource( 10 )]
+position = Vector2( 320, -188.269 )
+
+[node name="enemy4" parent="enemies" instance=ExtResource( 10 )]
+position = Vector2( 768, 39 )
+direction = 1
+
+[node name="enemy5" parent="enemies" instance=ExtResource( 10 )]
+position = Vector2( 2560, -320 )
+
+[node name="enemy6" parent="enemies" instance=ExtResource( 10 )]
+position = Vector2( 3434, 106 )
+direction = 1
 
 [connection signal="coin_collected" from="coins/Coin1" to="HUD" method="_on_coin_collected"]
 [connection signal="coin_collected" from="coins/Coin2" to="HUD" method="_on_coin_collected"]

@@ -5,7 +5,6 @@ const GRAVITY = 35
 const JUMPFORCE = -1100
 
 var velocity = Vector2(0,0)
-var coins = 0
 
 onready var sprite = $Sprite
 
@@ -32,12 +31,8 @@ func _physics_process(_delta):
 	velocity = move_and_slide(velocity, Vector2.UP)
 	velocity.x = lerp(velocity.x, 0, 0.2)
 	
-	if coins == 3:
-		get_tree().change_scene("res://level1.tscn")
 
 
 func _on_Fallzone_body_entered(body):
 	get_tree().change_scene("res://level1.tscn")
 
-func add_coin():
-	coins = coins + 1

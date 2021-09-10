@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Tiles/world_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://player/Jerry.tscn" type="PackedScene" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://background/set2_background.png" type="Texture" id=4]
 [ext_resource path="res://background/set2_tiles.png" type="Texture" id=5]
 [ext_resource path="res://coin/Coin.tscn" type="PackedScene" id=6]
+[ext_resource path="res://HUD/coin_gold.png" type="Texture" id=7]
+[ext_resource path="res://fonts/BalsamiqSans-Bold.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://HUD/HUD.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 160, 32 )
@@ -15,6 +18,21 @@ extents = Vector2( 384, 32 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 1280, 32 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.0431373, 0, 0.243137, 0.356863 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="DynamicFont" id=5]
+size = 52
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 70
+font_data = ExtResource( 8 )
 
 [node name="Level1" type="Node2D"]
 
@@ -53,7 +71,7 @@ current = true
 limit_left = -512
 limit_top = -500
 limit_right = 3966
-limit_bottom = 750
+limit_bottom = 820
 limit_smoothed = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
@@ -104,6 +122,35 @@ scale = Vector2( 1.75, 1.75 )
 texture = ExtResource( 5 )
 centered = false
 
+[node name="coins" type="Node2D" parent="."]
+
+[node name="Coin1" parent="coins" instance=ExtResource( 6 )]
+position = Vector2( 96, 64 )
+
+[node name="Coin2" parent="coins" instance=ExtResource( 6 )]
+position = Vector2( 192, -188.269 )
+
+[node name="Coin3" parent="coins" instance=ExtResource( 6 )]
+position = Vector2( 512, -188.269 )
+
+[node name="Coin4" parent="coins" instance=ExtResource( 6 )]
+position = Vector2( 1088, -188.269 )
+
+[node name="Coin5" parent="coins" instance=ExtResource( 6 )]
+position = Vector2( 1280, 192 )
+
+[node name="Coin6" parent="coins" instance=ExtResource( 6 )]
+position = Vector2( 1536, 64 )
+
+[node name="Coin7" parent="coins" instance=ExtResource( 6 )]
+position = Vector2( 2752, -320 )
+
+[node name="Coin8" parent="coins" instance=ExtResource( 6 )]
+position = Vector2( 2688, 192 )
+
+[node name="Coin9" parent="coins" instance=ExtResource( 6 )]
+position = Vector2( 3392, -188.269 )
+
 [node name="Fallzone" type="Area2D" parent="."]
 position = Vector2( 2048, 832 )
 collision_layer = 4
@@ -114,31 +161,58 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fallzone"]
 shape = SubResource( 3 )
 
-[node name="Coin1" parent="." instance=ExtResource( 6 )]
-position = Vector2( 96, 64 )
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource( 9 )
 
-[node name="Coin2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 224, -192 )
+[node name="Panel" type="Panel" parent="HUD"]
+margin_right = 257.0
+margin_bottom = 96.0
+custom_styles/panel = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Coin3" parent="." instance=ExtResource( 6 )]
-position = Vector2( 480, -192 )
+[node name="TextureRect" type="TextureRect" parent="HUD"]
+margin_left = 32.0
+margin_top = 16.0
+margin_right = 93.0
+margin_bottom = 77.0
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Coin4" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1088, -192 )
+[node name="x" type="Label" parent="HUD"]
+margin_left = 104.0
+margin_top = 16.0
+margin_right = 129.0
+margin_bottom = 79.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.898039, 0.682353, 0.219608, 1 )
+text = "x"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Coin5" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1280, 192 )
+[node name="Coins" type="Label" parent="HUD"]
+margin_left = 138.0
+margin_top = 5.056
+margin_right = 228.0
+margin_bottom = 89.056
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.898039, 0.682353, 0.219608, 1 )
+text = "##"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Coin6" parent="." instance=ExtResource( 6 )]
-position = Vector2( 2176, -128 )
-
-[node name="Coin7" parent="." instance=ExtResource( 6 )]
-position = Vector2( 2688, 192 )
-
-[node name="Coin8" parent="." instance=ExtResource( 6 )]
-position = Vector2( 2663, -320 )
-
-[node name="Coin9" parent="." instance=ExtResource( 6 )]
-position = Vector2( 3392, -192 )
-
+[connection signal="coin_collected" from="coins/Coin1" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="coins/Coin2" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="coins/Coin3" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="coins/Coin4" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="coins/Coin5" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="coins/Coin6" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="coins/Coin7" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="coins/Coin8" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="coins/Coin9" to="HUD" method="_on_coin_collected"]
 [connection signal="body_entered" from="Fallzone" to="Jerry" method="_on_Fallzone_body_entered"]

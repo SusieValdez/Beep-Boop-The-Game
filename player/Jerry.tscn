@@ -3,7 +3,7 @@
 [ext_resource path="res://player/Jerry.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://player/Jerry.gd" type="Script" id=2]
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 26.0047
 height = 14.1639
 
@@ -20,4 +20,9 @@ playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.793701, 15 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

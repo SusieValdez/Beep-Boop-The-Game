@@ -3,6 +3,7 @@ extends KinematicBody2D
 const SPEED = 350
 const GRAVITY = 35
 const JUMPFORCE = -1100
+const THROWBACK = 800
 
 var velocity = Vector2(0,0)
 
@@ -33,6 +34,27 @@ func _physics_process(_delta):
 	
 
 
+# warning-ignore:unused_argument
 func _on_Fallzone_body_entered(body):
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://level1.tscn")
 
+func bounce():
+	velocity.y = JUMPFORCE * 0.7
+
+func ouch(var enemyposx):
+	set_modulate(Color(1,0.3,0.6,0.6))
+	velocity.y = JUMPFORCE * 0.5
+	if position.x < enemyposx:
+		velocity.x = -THROWBACK
+	elif position.x > enemyposx:
+		velocity.x = THROWBACK
+	
+	Input.action_release("left")
+	Input.action_release("right")
+	
+	$Timer.start()
+
+
+func _on_Timer_timeout():
+	get_tree().change_scene("res://level1.tscn")

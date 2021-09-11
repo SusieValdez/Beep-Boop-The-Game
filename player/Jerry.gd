@@ -37,7 +37,7 @@ func _physics_process(_delta):
 # warning-ignore:unused_argument
 func _on_Fallzone_body_entered(body):
 # warning-ignore:return_value_discarded
-	get_tree().change_scene("res://level1.tscn")
+	get_tree().change_scene("res://HUD/GameOver.tscn")
 
 func bounce():
 	velocity.y = JUMPFORCE * 0.7
@@ -57,4 +57,4 @@ func ouch(var enemyposx):
 
 
 func _on_Timer_timeout():
-	get_tree().change_scene("res://level1.tscn")
+	get_tree().change_scene("res://HUD/GameOver.tscn")

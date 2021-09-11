@@ -8,6 +8,6 @@ func _ready():
 func _on_coin_collected():
 	coins = coins + 1
 	_ready()
-	if coins == 3:
+	if coins == 9:
 # warning-ignore:return_value_discarded
 		get_tree().change_scene("res://HUD/Winner.tscn")

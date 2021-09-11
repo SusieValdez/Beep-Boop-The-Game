@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://fonts/KiriFont.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://fonts/BalsamiqSans-Bold.ttf" type="DynamicFontData" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://HUD/grey_button13.png" type="Texture" id=8]
 [ext_resource path="res://background/set2_tiles.png" type="Texture" id=9]
 [ext_resource path="res://HUD/PlayButton.gd" type="Script" id=10]
+[ext_resource path="res://sound/Swinging Pants.ogg" type="AudioStream" id=11]
+[ext_resource path="res://player/platformChar_jump.png" type="Texture" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 95
@@ -67,10 +69,10 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-margin_left = 64.0
-margin_top = 49.0
-margin_right = 790.0
-margin_bottom = 254.0
+margin_left = 169.0
+margin_top = 64.0
+margin_right = 895.0
+margin_bottom = 269.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.94902, 0.878431, 0.133333, 1 )
 text = "Beep Boop
@@ -262,5 +264,30 @@ script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TitleScreenMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -12.0
+autoplay = true
+
+[node name="Jerry" type="TextureRect" parent="."]
+margin_left = 41.0
+margin_top = 64.0
+margin_right = 210.0
+margin_bottom = 256.0
+texture = ExtResource( 12 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Jerry2" type="TextureRect" parent="."]
+margin_left = 768.0
+margin_top = 64.0
+margin_right = 937.0
+margin_bottom = 256.0
+texture = ExtResource( 12 )
+expand = true
+flip_h = true
 
 [connection signal="pressed" from="PlayButton" to="PlayButton" method="_on_PlayButton_pressed"]
